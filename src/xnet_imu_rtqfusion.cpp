@@ -200,9 +200,9 @@ int main( int argc, char* argv[] )
         // do the rotation - takes two steps
         rt_rotatedGravity = rt_fusedConjugate * ( rt_gravity * rt_fusion.getFusionQPose() );
 
-        rt_residuAccel.setX( vf_ax - rt_rotatedGravity.x() ) *(-1.0) );
-        rt_residuAccel.setY( vf_ay - rt_rotatedGravity.y() ) *(-1.0) );
-        rt_residuAccel.setZ( vf_ay - rt_rotatedGravity.y() ) *(-1.0) ); //
+        rt_residuAccel.setX( (vf_ax - rt_rotatedGravity.x()) *(-1.0) );
+        rt_residuAccel.setY( (vf_ay - rt_rotatedGravity.y()) *(-1.0) );
+        rt_residuAccel.setZ( (vf_ay - rt_rotatedGravity.y()) *(-1.0) ); //
 
 	robbase_msg::RazorImu rz_residuAccel;
         rz_residuAccel.roll = rt_residuAccel.x();
