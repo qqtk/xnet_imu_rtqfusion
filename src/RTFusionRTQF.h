@@ -73,8 +73,8 @@ public:
     //  newIMUData() should be called for subsequent updates
     //  deltaTime is in units of seconds
 
-    void newIMUData(const RTVector3& gyro, const RTVector3& accel, const RTVector3& compass, unsigned long timestamp);
-    //excl'compass' void newIMUData(const RTVector3& gyro, const RTVector3& accel, const RTVector3& compass, unsigned long timestamp);
+    void newIMUData(const RTVector3& gyro, const RTVector3& accel, uint64_t timestamp);
+    //excl'compass' void newIMUData(const RTVector3& gyro, const RTVector3& accel, const RTVector3& compass, unsigned long msec_timestamp);
 
     // control the influence of the gyro, accel and compass sensors
 
@@ -95,7 +95,8 @@ public:
     inline const RTVector3& getFusionPose() {return m_fusionPose;}
     inline const RTQuaternion& getFusionQPose() {return m_fusionQPose;}
 
-    RTVector3 getAccelResiduals();
+    RTVector3 getAccelResiduals(RTVector3 rt_accel);
+    // vs' RTVector3 getAccelResiduals(); which use RTVector3 m_accel;
 
 protected: // from' RTIMULib-Arduino.git: RTIMU.h
     // void gyroBiasInit();                                    // sets up gyro bias calculation
