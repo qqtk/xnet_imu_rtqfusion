@@ -14,12 +14,12 @@ find_package(catkin REQUIRED COMPONENTS
 #  robbase_msg # re' bitbake donot generate build/--/include/WheelSpeed.h 're'solved after changing gitCode'and'md5sum' y16m8d02'h1750pm'h1842pm
 
 SET(LIBMATH_SRCS
-    RTFusionRTQF.cpp
-    RTMath.cpp
+    src/RTFusionRTQF.cpp
+    src/RTMath.cpp
 )
 
 ADD_LIBRARY(RTVec3Lib SHARED ${LIBMATH_SRCS})
-INSTALL(TARGETS RTVec3Lib DESTINATION lib)
+## INSTALL(TARGETS RTVec3Lib DESTINATION lib)
 
 ## Generate messages in the 'msg' folder
 # add_message_files(
@@ -84,7 +84,7 @@ add_executable(xnet_imu_rtqfusion_node src/xnet_imu_rtqfusion.cpp src/RTFusionRT
 ## Specify libraries to link a library or executable target against
  target_link_libraries(xnet_imu_rtqfusion_node
    ${catkin_LIBRARIES}
-	libxNetDriver.so
+	libxNetDriver.so RTVec3Lib
  )
 # add_dependencies(xnet_imu_rtqfusion_node xnet_imu_rtqfusion_gencpp)
 
