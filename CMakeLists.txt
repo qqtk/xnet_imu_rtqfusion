@@ -19,7 +19,7 @@ SET(LIBMATH_SRCS
 )
 
 ADD_LIBRARY(RTVec3Lib SHARED ${LIBMATH_SRCS})
-## INSTALL(TARGETS RTVec3Lib DESTINATION lib)
+INSTALL(TARGETS RTVec3Lib DESTINATION lib)
 
 ## Generate messages in the 'msg' folder
 # add_message_files(
