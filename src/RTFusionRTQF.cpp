@@ -251,51 +251,51 @@ void RTFusionRTQF::handleGyroBias()
     float *matrix = m_axisRotation;
     RTVector3 tempGyro = m_gyro;
     RTVector3 tempAccel = m_accel;
-    RTVector3 tempCompass = m_compass;
+    // RTVector3 tempCompass = m_compass; // excl'compass
 
     // do new x value
     if (matrix[0] != 0) {
         m_gyro.setX(tempGyro.x() * matrix[0]);
         m_accel.setX(tempAccel.x() * matrix[0]);
-        m_compass.setX(tempCompass.x() * matrix[0]);
+        // m_compass.setX(tempCompass.x() * matrix[0]);
     } else if (matrix[1] != 0) {
         m_gyro.setX(tempGyro.y() * matrix[1]);
         m_accel.setX(tempAccel.y() * matrix[1]);
-        m_compass.setX(tempCompass.y() * matrix[1]);
+        // m_compass.setX(tempCompass.y() * matrix[1]);
     } else if (matrix[2] != 0) {
         m_gyro.setX(tempGyro.z() * matrix[2]);
         m_accel.setX(tempAccel.z() * matrix[2]);
-        m_compass.setX(tempCompass.z() * matrix[2]);
+        // m_compass.setX(tempCompass.z() * matrix[2]);
     }
 
     // do new y value
     if (matrix[3] != 0) {
         m_gyro.setY(tempGyro.x() * matrix[3]);
         m_accel.setY(tempAccel.x() * matrix[3]);
-        m_compass.setY(tempCompass.x() * matrix[3]);
+        // m_compass.setY(tempCompass.x() * matrix[3]);
     } else if (matrix[4] != 0) {
         m_gyro.setY(tempGyro.y() * matrix[4]);
         m_accel.setY(tempAccel.y() * matrix[4]);
-        m_compass.setY(tempCompass.y() * matrix[4]);
+        // m_compass.setY(tempCompass.y() * matrix[4]);
     } else if (matrix[5] != 0) {
         m_gyro.setY(tempGyro.z() * matrix[5]);
         m_accel.setY(tempAccel.z() * matrix[5]);
-        m_compass.setY(tempCompass.z() * matrix[5]);
+        //  m_compass.setY(tempCompass.z() * matrix[5]);
     }
 
     // do new z value
     if (matrix[6] != 0) {
         m_gyro.setZ(tempGyro.x() * matrix[6]);
         m_accel.setZ(tempAccel.x() * matrix[6]);
-        m_compass.setZ(tempCompass.x() * matrix[6]);
+        //  m_compass.setZ(tempCompass.x() * matrix[6]);
     } else if (matrix[7] != 0) {
         m_gyro.setZ(tempGyro.y() * matrix[7]);
         m_accel.setZ(tempAccel.y() * matrix[7]);
-        m_compass.setZ(tempCompass.y() * matrix[7]);
+        // m_compass.setZ(tempCompass.y() * matrix[7]);
     } else if (matrix[8] != 0) {
         m_gyro.setZ(tempGyro.z() * matrix[8]);
         m_accel.setZ(tempAccel.z() * matrix[8]);
-        m_compass.setZ(tempCompass.z() * matrix[8]);
+        // m_compass.setZ(tempCompass.z() * matrix[8]);
     }
 #endif
    // if (!m_gyroBiasValid) {
@@ -304,8 +304,8 @@ void RTFusionRTQF::handleGyroBias()
         deltaAccel -= m_accel;   // compute difference
         m_previousAccel = m_accel;
 
-        if ((deltaAccel.squareLength() < RTIMU_FUZZY_ACCEL_ZERO_SQUARED) &&
-            (m_gyro.squareLength() < RTIMU_FUZZY_GYRO_ZERO_SQUARED)) 
+        if ((deltaAccel.length() < RTIMU_FUZZY_ACCEL_ZERO) &&
+            (m_gyro.length() < RTIMU_FUZZY_GYRO_ZERO)) 
         {
             // what we are seeing on the gyros should be bias only 'so learn from this
             m_gyroBias.setX((1.0 - m_gyroAlphaLearningRate) * m_gyroBias.x() + m_gyroAlphaLearningRate * m_gyro.x());
