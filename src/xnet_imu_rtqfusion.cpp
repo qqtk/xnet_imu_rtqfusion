@@ -18,6 +18,7 @@
 RTFusionRTQF rt_fusion;
 RTVector3 rt_accel, rt_gyro;
 RTVector3 rt_residuAccel; // Accelerometer residuals (g):
+RTQuaternion rt_fusedConjugate, rt_rotatedGravity;
 
 ros::Time current_time, last_time;
 typedef struct{
@@ -28,7 +29,7 @@ imuRaw_vec_struct imuRaw_struct;
 
 float vf_gx, vf_gy, vf_gz;
 float vf_ax, vf_ay, vf_az;
-float32 vf_roll, vf_pitch, vf_yaw;
+float vf_roll, vf_pitch, vf_yaw;
 
 int sampleFreq;
 // #define sampleFreq	100.0f // sample frequency in Hz
@@ -194,6 +195,8 @@ int main( int argc, char* argv[] )
 	// ie. see: RTIMULib-Arduino.git: ArduinoAccel.ino 'Ln80s
 	// adjust the measured accel and change the signs to make sense
         //  do gravity rotation and subtraction
+        
+        // RTQuaternion rt_fusedConjugate, rt_rotatedGravity;
         rt_fusedConjugate = rt_fusion.getFusionQPose().conjugate();
         // do the rotation - takes two steps
         rt_rotatedGravity = rt_fusedConjugate * ( rt_gravity * rt_fusion.getFusionQPose() );
