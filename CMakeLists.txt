@@ -13,6 +13,14 @@ find_package(catkin REQUIRED COMPONENTS
 )
 #  robbase_msg # re' bitbake donot generate build/--/include/WheelSpeed.h 're'solved after changing gitCode'and'md5sum' y16m8d02'h1750pm'h1842pm
 
+SET(LIBMATH_SRCS
+    RTFusionRTQF.cpp
+    RTMath.cpp
+)
+
+ADD_LIBRARY(RTVec3Lib SHARED ${LIBMATH_SRCS})
+INSTALL(TARGETS RTVec3Lib DESTINATION lib)
+
 ## Generate messages in the 'msg' folder
 # add_message_files(
 #  DIRECTORY
