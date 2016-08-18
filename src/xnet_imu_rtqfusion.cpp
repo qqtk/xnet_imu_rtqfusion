@@ -13,8 +13,8 @@
 // #include "xnet_imu_rtqfusion/xdriver.h"
 // #define M_PI 3.1415926 // wn. colibri-imx6/usr/include/math.h: Ln.386
 
+#include "RTMath.h"
 #include "RTFusionRTQF.h" 
-// incl."RTMath.h"
 RTFusionRTQF rt_fusion;
 RTVector3 rt_accel, rt_gyro;
 RTVector3 rt_residuAccel; // Accelerometer residuals (g):
