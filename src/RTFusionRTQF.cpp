@@ -58,7 +58,7 @@ RTFusionRTQF::RTFusionRTQF()
    m_sampleInterval = (uint64_t)1000000 / m_sampleRate;
   
     m_gyroSampleCount = 0; // number of gyro samples used wn':: handleGyroBias() 'eg' m_gyroSampleCount++;
-    m_gyroContinuousAlpha = 0.01f / m_sampleRate;
+    m_gyroAlphaContinuousRate = 0.01f / m_sampleRate;
     m_gyroAlphaLearningRate = 2.0f / m_sampleRate; // gyro bias rapid learning rate
 #ifdef USE_SLERP
     m_slerpPower = (RTFLOAT)0.02; // RTQF_SLERP_POWER;
@@ -68,7 +68,7 @@ RTFusionRTQF::RTFusionRTQF()
 #endif
     m_enableGyro = true;
     m_enableAccel = true;
-    m_enableCompass = false; // excl'compass
+    // m_enableCompass = false; // excl'compass
     // reset();
     m_firstTime = true;
     m_fusionPose = RTVector3();
