@@ -185,6 +185,7 @@ int main( int argc, char* argv[] )
 	rt_gyro.setX(vf_gx); 
 	rt_gyro.setX(vf_gy); 
 	rt_gyro.setX(vf_gz);
+	rt_fusion.handleGyroBias(); //y16m8d19'add'
 	rt_fusion.newIMUData(rt_gyro, rt_accel, timestamp_ga);
 
 	// git' RTIMULib/RTIMULib.git ': RTVector3 RTFusion::getAccelResiduals()
